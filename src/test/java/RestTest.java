@@ -1,5 +1,6 @@
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
@@ -11,17 +12,15 @@ public class RestTest
 
         @Test
         public void testSomething() {
-            RestAssured.baseURI="https://maps.googleapis.com";
+            RestAssured.baseURI="http://api.openweathermap.org/";
+
             given().
-                    param("location", "-33.8670522,151.1957362").
-                    param("radius","1500").
-                    param("type", "restaurant").
-                    param("keyword", "cruise").
-                    param("key", SECRETZ.class).
+                    param("q", "london").
+                    param("appid", SECRETZ.WEATHER).
             when().
-                    get("maps/api/place/nearbysearch/json").
+                    request("GET","data/2.5/weather").
             then().
-                    assertThat().statusCode(200).and().contentType(ContentType.JSON);
+                    assertThat().statusCode(200);
         }
     }
 }
