@@ -34,7 +34,7 @@ public class RestTest {
                     .param("radius", "1500")
                     .param("type", "restaurant")
                     .param("keyword", "cruise")
-                    .param("key", "AIzaSyD5BKl4A-PHYgy5ty0xaTtnKGVIbmX0xHc")
+                    .param("key", SECRETZ.GOOGLE)
                     .when()
                     .get("/maps/api/place/nearbysearch/json")
                     .then().extract().response();
